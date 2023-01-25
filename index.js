@@ -12,10 +12,9 @@ const privateRoutes = require("./routes/privateRoutes/index");
 const commonRoutes = require("./routes/commonRoutes/index");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
-
 /* cors error handle */
 const corsOptions = {
-  origin: ["http://localhost:3000"],
+  origin: ["http://localhost:3000", "https://dmsumu-test-task.netlify.app"],
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
@@ -35,6 +34,10 @@ app.use("/api", commonRoutes);
 // base API
 app.get("/", (req, res) => {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://dmsumu-test-task.netlify.app"
+  );
   res.send("Hello server is ready !");
 });
 
