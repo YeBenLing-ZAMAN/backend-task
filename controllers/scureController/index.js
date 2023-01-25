@@ -93,7 +93,10 @@ const addUserInfo = async (req, res) => {
 /* get user store info */
 const getUserStore = async (req, res) => {
   try {
-    const root = await UserSelectedSectors.find({}).sort({ created: -1 });
+    const { id } = req.auth;
+    const root = await UserSelectedSectors.find({ email: id }).sort({
+      created: -1,
+    });
     if (root) {
       res.json({
         status: "success",
