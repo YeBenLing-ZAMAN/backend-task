@@ -5,7 +5,7 @@ const userSelectedSectorsSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  email: { type: String, required: true },
+  email: { type: String, required: false },
   sectors: [{ type: String, required: true }],
   agree: { type: Boolean, required: true, num: [true, false] },
   created: { type: String, default: new Date().getTime() },

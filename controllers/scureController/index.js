@@ -68,14 +68,14 @@ const addStore = async (req, res) => {
 
 const addUserInfo = async (req, res) => {
   try {
-    const { id } = req.auth;
+    // const { id } = req.auth;
     if (!req.body.name || !req.body.agree || !req.body.sectors) {
       return res.status(400).json({ error: "please filled properly" });
     }
 
     const userSelectedSectors = new UserSelectedSectors({
       ...req.body,
-      email: id,
+      email: null,
     });
 
     /* user infor store in database */
@@ -93,8 +93,8 @@ const addUserInfo = async (req, res) => {
 /* get user store info */
 const getUserStore = async (req, res) => {
   try {
-    const { id } = req.auth;
-    const root = await UserSelectedSectors.find({ email: id }).sort({
+    // const { id } = req.auth;
+    const root = await UserSelectedSectors.find().sort({
       created: -1,
     });
     if (root) {

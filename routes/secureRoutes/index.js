@@ -15,11 +15,11 @@ const middleware = [verifyJWT, verifyUser];
 router.use(middleware);
 /* ---------- */
 
-router.get("/get-root-store", getRootStore);
-router.post("/get-next-store", getNextStore);
-router.put("/add-store", addStore);
-router.post("/add-user-info", addUserInfo);
-router.get("/get-user-store-info", getUserStore);
+// router.get("/get-root-store", getRootStore);
+// router.post("/get-next-store", getNextStore);
+// router.put("/add-store", addStore);
+// router.post("/add-user-info", addUserInfo);
+// router.get("/get-user-store-info", getUserStore);
 
 
 module.exports = router;
