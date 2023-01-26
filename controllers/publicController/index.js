@@ -14,7 +14,7 @@ const registerUser = async (req, res) => {
     /* for email exieted or not */
     const userExist = await User.findOne({ email: email });
     if (userExist) {
-      return res.status(422).json({ error: "Email already Exist" });
+      return res.status(400).json({ message: "Email already Exist" });
     }
     const user = new User({
       name,
@@ -67,7 +67,36 @@ const authUser = async (req, res) => {
   }
 };
 
+/* check email  */
+const checkEmail = async (req, res) => {
+  try {
+    const email = req.params.email;
+    if (!email) {
+      res.status(400).json({
+        message: "Please fill email field",
+      });
+    } else {
+      const user = await User.findOne({ email: email });
+      if (user) {
+        res.status(400).json({
+          message: "Email taken",
+        });
+      } else {
+        res.status(200).json({
+          message: "Available email",
+        });
+      }
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({
+      message: error.toString(),
+    });
+  }
+};
+
 module.exports = {
   registerUser,
   authUser,
+  checkEmail,
 };
